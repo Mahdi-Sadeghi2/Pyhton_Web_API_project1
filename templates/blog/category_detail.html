@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category details</title>
+</head>
+<body>
+<h2>{{ category.name }}</h2>
+{% for content in contents %}
+    <a href="{% url 'content_detail' content.id %}">{{ content.title }}</a><br>
+{% endfor %}
+
+
+</body>
+</html>
