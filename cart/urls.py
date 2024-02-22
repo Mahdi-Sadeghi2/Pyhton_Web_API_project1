@@ -1,9 +1,10 @@
+# cart/urls.py
 from django.urls import path
+from .views import AddToCartView, CartView
 
+app_name= 'cart'
 urlpatterns = [
-    path('categories/', category_list, name='category_list'),
-    path('categories/<int:category_id>/', category_detail, name='category_detail'),
-    path('contents/', content_list, name='content_list'),
-    path('contents/<int:content_id>/', content_detail, name='content_detail')
-    
+    path('add_to_cart/<int:product_id>/',
+         AddToCartView.as_view(), name='add_to_cart'),
+    path('cart_view/', CartView.as_view(), name='cart_view'),
 ]
