@@ -3,14 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category details</title>
+    <title>{{ category.name }} Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-<h2>{{ category.name }}</h2>
-{% for content in contents %}
-    <a href="{% url 'content_detail' content.id %}">{{ content.title }}</a><br>
-{% endfor %}
+    <div class="container mt-5">
+        <h2 class="text-center">{{ category.name }}</h2>
+        <h3 class="mt-4">Contents Title</h3>
+        <ul class="list-group">
+            {% for content in contents %}
+                <li class="list-group-item">
+                    <a href="{% url 'blog:content_detail' pk=content.id %}" class="text-decoration-none">{{ content.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

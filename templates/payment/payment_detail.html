@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment detail</title>
+</head>
+<body>
+<h2>Payment Details</h2>
+<p>Amount: {{ payment.amount }}</p>
+<p>Status: {% if payment.is_successful %}Successful{% else %}Unsuccessful{% endif %}</p>
+<p><a href="{% url 'simulate_successful_payment' payment.id %}">Simulate Successful Payment</a></p>
+<p><a href="{% url 'simulate_unsuccessful_payment' payment.id %}">Simulate Unsuccessful Payment</a></p>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Shopping Cart</title>
+</head>
+<body>
+
+  <h2>Your Shopping Cart</h2>
+
+  {% if cart_items %}
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart_items %}
+          <tr>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>${{ item.product.price }}</td>
+            <td>${{ item.total_price }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2">Total Quantity:</td>
+          <td colspan="2">{{ total_quantity }}</td>
+        </tr>
+        <tr>
+          <td colspan="3">Total Price:</td>
+          <td>${{ total_price }}</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <!-- Additional checkout or update cart links/buttons can be added here -->
+
+  {% else %}
+    <p>Your cart is empty.</p>
+  {% endif %}
+
+</body>
+</html>
+
