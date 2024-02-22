@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment reuslt</title>
+</head>
+<body>
+<h2>Payment Result</h2>
+<p>Amount: {{ payment.amount }}</p>
+<p>Status: {% if payment.payment_status == 'success' %}Successful{% else %}Unsuccessful{% endif %}</p>
+
+</body>
+</html>
