@@ -66,10 +66,10 @@
         {% endfor %}
 
         
-        {% if user.is_authenticated %}
-            <form method="post" action="{% url 'blog:content_detail' pk=content.id %}">
-                {% csrf_token %}
-                {{ form.as_p }}
+        <form method="post" action="{% url 'blog:content_detail' pk=content.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if user.is_authenticated %}
                 <button type="submit">Submit Comment</button>
             </form>
         {% else %}

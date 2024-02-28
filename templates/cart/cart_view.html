@@ -1,52 +1,68 @@
-<!DOCTYPE html>
+<!-- cart/cart.html -->
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Shopping Cart</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		/* Add CSS styles for flex container and items */
+		.product-list {
+			display: flex;
+			flex-wrap: wrap; /* Allow items to wrap to the next row if necessary */
+			justify-content: space-between; /* Space items evenly along the main axis */
+			list-style: none; /* Remove list styles */
+			padding: 0;
+		}
+
+		.product-item {
+			
+			flex: 1; /* Grow to fill available space evenly */
+			/* Limit item width to avoid overcrowding */
+			margin: 10px; /* Add spacing between items */
+			border: 1px solid #ccc; /* Add a border for visual separation */
+			padding: 10px;
+			text-align: center;
+		}
+
+		/* Style the "Buy Now" button */
+		.buy-now-button {
+			display: block;
+			margin-top: 10px;
+			background-color: #007bff;
+			color: #fff;
+			text-decoration: none;
+			padding: 5px 10px;
+			border-radius: 5px;
+		}
+	</style>
 </head>
+
 <body>
 
-  <h2>Your Shopping Cart</h2>
+	<h1>Your Shopping Cart</h1>
 
-  {% if cart_items %}
-    <table>
-      <thead>
-        <tr>
-          <th>Product</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in cart_items %}
-          <tr>
-            <td>{{ item.product.name }}</td>
-            <td>{{ item.quantity }}</td>
-            <td>${{ item.product.price }}</td>
-            <td>${{ item.total_price }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="2">Total Quantity:</td>
-          <td colspan="2">{{ total_quantity }}</td>
-        </tr>
-        <tr>
-          <td colspan="3">Total Price:</td>
-          <td>${{ total_price }}</td>
-        </tr>
-      </tfoot>
-    </table>
+	<div class="product-list">
 
-    <!-- Additional checkout or update cart links/buttons can be added here -->
+	
 
-  {% else %}
-    <p>Your cart is empty.</p>
-  {% endif %}
+	{% for item in cart_items %}
+	<div class="product-item">
+		<p>{{ item.product.name }} ({{ item.quantity }})</p>
+		<p>Price: ${{ item.product.price }}</p>
+		<a href="{% url 'cart:remove_from_cart' item.id %}">Remove</a>
+	</div>
+	{% empty %}
+	<p>Your cart is empty.</p>
+	{% endfor %}
+
+	</div>
+
+	<p>Total Price: ${{ total_price }}</p>
+
+	<a href="{% url 'cart:product_list' %}">Continue Shopping</a>
 
 </body>
-</html>
 
+</html>
